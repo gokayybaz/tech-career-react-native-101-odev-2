@@ -17,9 +17,11 @@ const SupplierScreen = () => {
         <Text
           style={[
             styles.text,
-            item.address.country === 'USA' ? styles.textUSA : styles.textNotUSA,
+            item.address?.country === 'USA'
+              ? styles.textUSA
+              : styles.textNotUSA,
           ]}>
-          {item.companyName} - {item.address.country}
+          {item.companyName} - {item.address?.country}
         </Text>
       )}
     />
