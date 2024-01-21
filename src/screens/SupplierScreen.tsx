@@ -1,6 +1,7 @@
 import {FlatList, StyleSheet, Text} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
+import {Card} from 'react-native-paper';
 
 const SupplierScreen = () => {
   const [suppliers, setSuppliers] = useState<any[]>([]);
@@ -11,33 +12,20 @@ const SupplierScreen = () => {
     });
   }, []);
   return (
-    <FlatList
-      data={suppliers}
-      renderItem={({item}) => (
-        <Text
-          style={[
-            styles.text,
-            item.address?.country === 'USA'
-              ? styles.textUSA
-              : styles.textNotUSA,
-          ]}>
-          {item.companyName} - {item.address?.country}
-        </Text>
-      )}
-    />
+    <>
+      <FlatList
+        style={{padding: 15}}
+        data={suppliers}
+        renderItem={({item}) => (
+          <Card style={{marginBottom: 15}}>
+            <Card.Content>
+              <Text style={{fontWeight: 'bold'}}>{item.companyName}</Text>
+            </Card.Content>
+          </Card>
+        )}
+      />
+    </>
   );
 };
-
-const styles = StyleSheet.create({
-  text: {
-    height: 20,
-  },
-  textUSA: {
-    color: 'red',
-  },
-  textNotUSA: {
-    color: 'black',
-  },
-});
 
 export default SupplierScreen;
